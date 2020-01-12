@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+		<div class="container text-center">
+			<div class="jumbotron">
+				<h1>Mission to Mars</h1>
+				<button type="button" onclick="location.href = '/scrape'">Scrape New Data</button>
+			</div>
+		</div>
+		{% for item in mars_info %}
+		<div class="row">
+			<div class="col-12">
+				<h2>Latest Mars News</h2>
+				<h4>{{item.news_title}}</h4>
+				<p>{{item.news_p}}</p>
+			</div>
+			<div class="col-8">
+				<h2>Featured Mars Image</h2>
+				<img src={{item.featured_image_url}} alt="..." class="img-fluid">
+			</div>
+			<div class="col-4">
+				<div class="card">
+					<div class="container">
+						<h4>Current Weather on Mars</h4>
+						<p>{{item.mars_weather}}</p>
+					</div>
+				</div>
+				<h4>Mars Facts</h4>
+				{{item.html_table|safe}}
+			</div>
+			<div class="container text-center">
+					<h2>Mars Hemispheres</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<div class="card">
+					<img src={{item.hemisphere_image_urls[0].img_url}} alt="..." class="img-fluid">
+					<div class="container">
+						<h2>{{item.hemisphere_image_urls[0].title}}</h2>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card">
+					<img src={{item.hemisphere_image_urls[1].img_url}} alt="..." class="img-fluid">
+					<div class="container">
+						<h2>{{item.hemisphere_image_urls[1].title}}</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<div class="card">
+					<img src={{item.hemisphere_image_urls[2].img_url}} alt="..." class="img-fluid">
+					<div class="container">
+						<h2>{{item.hemisphere_image_urls[2].title}}</h2>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card">
+					<img src={{item.hemisphere_image_urls[3].img_url}} alt="..." class="img-fluid">
+					<div class="container">
+						<h2>{{item.hemisphere_image_urls[3].title}}</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</body>
